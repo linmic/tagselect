@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh_TW">
+	<head>
+		<title>jQuery tag selector</title>
+		<link rel="stylesheet" type="text/css" href="demo.css"/>
+	</head>
+	<body>
+		<h1>TagSelect Pluging Demo</h1>
+		<hr/>
+		<h2>Section 1</h2>
+		<input id="input1" class="selected-input" type="text"/>
+		<div id="tag1" class="tag-select clearfix"></div>
+		<h2>Section 2</h2>
+		<input id="input2" class="selected-input" type="text"/>
+		<div id="tag2" class="tag-select clearfix"></div>
+		<!-- script start here -->
+		<script src="http://code.jquery.com/jquery-1.5.2.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="jquery.tagselect.js"></script>
+		<script type="text/javascript">
+			(function() {
+				var tags1 = ['線上遊戲', '網頁遊戲', '社交遊戲', '行動遊戲', '單機遊戲', '電視遊樂器', '動畫漫畫', '主題社群', '廠商服務', '站務中心', '交易區', 'PS2', 'PS22', 'PS3', 'XBOX'];
+				var tags2 = ['小明', '小華', '大雄', '小叮噹', '小丸子', '小捧由'];
+				$('#tag1').tagselect(tags1, ' ', $('#input1'));
+				$('#tag2').tagselect(tags2, ',', $('#input2'));
+			})();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+body { font: normal 0.8em/1.2em "Droid Sans", Verdana, sans-serif; }
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+html[xmlns] .clearfix {
+	display: block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+.tag-select { display: block; }
+.tag-select a { float: left; margin-right: 5px; display: block; color: #15317E; padding: 3px 6px; border: 1px solid #5CB3FF; text-decoration: none; -moz-border-radius: 3px; border-radius: 3px; }
+.tag-select a:hover, .tag-select a.active { background-color: #E2E8F6; border: 1px solid #BDC7D8; }
+.selected-input { display: block; margin-bottom: 10px; width: 100%; }
