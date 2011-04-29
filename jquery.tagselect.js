@@ -19,7 +19,7 @@
 			}
 
 			this.defaults = {
-				sep: ",",
+				sep: " ", // delimiter
 				$input: $('#input1')
 			}
 
@@ -73,7 +73,7 @@
 			function trim_n_split( str, sep ) {
 				var arr = $.trim(str.toLowerCase()).split(sep);
 				for(var i in arr) {
-					if( !isNaN(i) ) { arr[i] = $.trim(arr[i]); }
+					if( arr.hasOwnProperty(i) ) { arr[i] = $.trim(arr[i]); }
 				}
 				return arr;
 			}
@@ -98,7 +98,6 @@
 					for(var i in arr) {
 						if( arr.hasOwnProperty(i) && arr[i]!='' ) {
 							add_tag(arr[i]);
-							//console.log('rebuild: add ' + arr[i]);
 						}
 					}
 				}
@@ -141,14 +140,10 @@
 				if( !$this.hasClass('active') ) { // if inactive
 					$this.addClass('active');
 					add_tag(tag_text);
-					//console.log("add_tag: " + tag_text);
-					//console.log(selected_tags);
 				} else { // if active
 					$this.removeClass('active');
 					if(selected_tags.indexOfIg(tag_text)!=-1) {
 						rm_tag(tag_text);
-						//console.log("rm_tag: " + tag_text);
-						//console.log(selected_tags);
 					}
 				}
 				var s = trim_n_split($input.val(), sep);
@@ -156,12 +151,9 @@
 					// if this is a new tag which is not included in tag src nor selected tags
 					if(selected_tags.indexOfIg(s[i])===-1 && tags.indexOfIg(s[i])===-1 && s[i]!=='' && s[i]!=tag_text) {
 						add_tag(s[i]);
-						//console.log('[new tag]: ' + s[i]);
-						//console.log(selected_tags);
 					}
 				}
 				
-				//console.log(selected_tags);
 				$input.focus().val($.trim(selected_tags.join(sep)));
 				e.preventDefault();
 			});
