@@ -1,34 +1,45 @@
 <!doctype html>
 <html lang="zh_TW">
 	<head>
+		<meta charset="UTF-8">
 		<title>jQuery tag selector</title>
 		<link rel="stylesheet" type="text/css" href="demo.css"/>
 	</head>
 	<body>
 		<h1>jQuery TagSelect Demo</h1>
 		<hr/>
-		<h2>mix, delimiter: space(" ")</h2>
+		<h2>mix, delimiter: space(" ") with autocomplete</h2>
 		<input id="input1" class="selected-input" type="text"/>
 		<div id="tag1" class="tag-select clearfix"></div>
-		<h2>Chinese, delimiter: comma(",")</h2>
+		<h2>Chinese, delimiter: space(" "), without autocomplete</h2>
 		<input id="input2" class="selected-input" type="text"/>
 		<div id="tag2" class="tag-select clearfix"></div>
-		<h2>Japanese, delimiter: comma(",")</h2>
+		<h2>Japanese, delimiter: comma(",") with autocomplete</h2>
 		<input id="input3" class="selected-input" type="text"/>
 		<div id="tag3" class="tag-select clearfix"></div>
+		<div class="desc">
+			<p><strong>Syntax:</strong> $.tagselect( datasrc, delimiter, $input, ac_enable, jqueryui_css )</p>
+			<p><strong>datasrc:</strong> Your data source as an array.</p>
+			<p><strong>delimiter:</strong> Used to separate your tags.</p>
+			<p><strong>$input:</strong> Target input/textarea element.</p>
+			<p><strong>ac_enable:</strong> Whether enable jQuery UI Autocomplete or not. true/false</p>
+			<p><strong>jqueryui_css:</strong> You can employ your own customized css for jQuery, set the jqueryui_css as your css's URL or location. If there is no value given, the default would be the <strong>basic theme</strong> of jQuery UI.</p>
+			<hr/>
+			<p><strong>Important:</strong> So far it only supports delimiter as comma and space, others would lead to malfunction.</p>
+		</div>
 		<!-- script start here -->
 		<script src="http://code.jquery.com/jquery-1.5.2.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="jquery.autocomplete.min.js"></script>
-		<script type="text/javascript" src="jquery.tagselect.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+		<!--<script type="text/javascript" src="jquery.autocomplete.min.js"></script>-->
+		<script type="text/javascript" src="jquery.tagselect.js"></script>
 		<script type="text/javascript">
 			(function() {
-				var tags1 = [	'線上遊戲', '網頁遊戲', '社交遊戲', '行動遊戲', '單機遊戲', '電視遊樂器', '動畫漫畫', '主題社群', '廠商服務',
-								'PS2', 'N64', 'NDS', 'PSP', 'PS3', 'XBOX', 'Udyr', 'Annie', 'Nocturne', 'Rammus', 'Taric' ];
+				var tags1 = [ '線上遊戲', '網頁遊戲', '社交遊戲', '行動遊戲', '單機遊戲', '電視遊樂器', '動畫漫畫', '主題社群', '廠商服務', 'PS2', 'N64', 'NDS', 'PSP', 'PS3', 'XBOX', 'Udyr', 'Annie', 'Nocturne', 'Rammus', 'Taric' ];
 				var tags2 = ['小明', '小華', '大雄', '小叮噹', '小丸子', '小捧由', '小英', '胖虎', '小夫', '靜香', '王聰明', '超級小玉'];
 				var tags3 = ['ショッピング', 'オークション', '旅行、出張', 'ニュース', '天気', 'スポーツ', 'ファイナンス', 'テレビ', 'GyaO!', 'Y!モバゲー', '地図', '路線']
-				$('#tag1').tagselect(tags1, ' ', $('#input1'));
-				$('#tag2').tagselect(tags2, ',', $('#input2'));
-				$('#tag3').tagselect(tags3, ',', $('#input3'));
+				$('#tag1').tagselect(tags1, ' ', $('#input1'), ac_enable=true);
+				$('#tag2').tagselect(tags2, ' ', $('#input2'), ac_enable=false);
+				$('#tag3').tagselect(tags3, ',', $('#input3'), ac_enable=true);
 			})();
 		</script>
 	</body>
