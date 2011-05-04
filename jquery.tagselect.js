@@ -33,15 +33,13 @@
 				if(typeOf(key) !== 'string') {
 					return false;
 				}
-				var $this = this,
-				key = key.toLowerCase();
+				var lowercases= [], //use variable to cache the result first
+  				    key = key.toLowerCase();
 
-				for(var i in $this) {
-					if( $this.hasOwnProperty(i) ) {
-						$this[i] = $this[i].toLowerCase();
-					}
+                                for(var i = 0 ; i < this.length ;++ i){ //always use index to access array.
+				     lowercases.push(this[i].toLowerCase());  
 				}
-				return $this.indexOf(key);
+				return lowercases.indexOf(key);   // do the indexOf job
 			}
 
 			function ac_split( str, sep ) {
