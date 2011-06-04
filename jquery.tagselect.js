@@ -1,7 +1,7 @@
 /*
 * jQuery TagSelect Plugin
 *
-* Copyright (c) 2011 Po-Huan, Lin a.k.a Linmic
+* Copyright (c) 2011 Gamebase Inc. & Po-Huan, Lin a.k.a Linmic
 * Mail: linmicya@gmail.com
 *
 * Licensed under MIT licenses:
@@ -33,14 +33,15 @@
 				if(typeOf(key) !== 'string') {
 					return false;
 				}
-				var $this = this,
+				var $this = [],
 				key = key.toLowerCase();
 
-				for(var i in $this) {
-					if( $this.hasOwnProperty(i) ) {
-						$this[i] = $this[i].toLowerCase();
+				for(var i in this) {
+					if( this.hasOwnProperty(i) ) {
+						$this[i] = this[i].toLowerCase();
 					}
 				}
+
 				return $this.indexOf(key);
 			}
 
@@ -56,7 +57,7 @@
 
 			// trim + split + lowercase, return array
 			function trim_n_split( str, sep ) {
-				var arr = $.trim(str.toLowerCase()).split(sep);
+				var arr = $.trim(str/*.toLowerCase()*/).split(sep);
 				for(var i in arr) {
 					if( arr.hasOwnProperty(i) ) { arr[i] = $.trim(arr[i]); }
 				}
@@ -80,12 +81,14 @@
 
 			// check the input value, then rebuild it
 			function rebuild() {
+				//console.log(selected_tags);
 				var arr = trim_n_split($input.val(), sep);
 				selected_tags = [];
 
 				if($.trim($input.val())!='') {
 					for(var i in arr) {
-						if( arr.hasOwnProperty(i) && arr[i]!='' ) {
+						// TODO: find better solution to check duplication
+						if( arr.hasOwnProperty(i) && arr[i]!='' && selected_tags.indexOfIg(arr[i])===-1) {
 							add_tag(arr[i]);
 						}
 					}
@@ -98,6 +101,7 @@
 						$(this).addClass('active');
 					}
 				});
+				//console.log(selected_tags);
 			}
 
 			// check if there's a given array of tags
@@ -200,6 +204,7 @@
 					}
 				}
 				var s = trim_n_split($input.val(), sep);
+
 				for(var i in s) {
 					// if this is a new tag which is not included in tag src nor selected tags
 					if(selected_tags.indexOfIg(s[i])===-1 && tags.indexOfIg(s[i])===-1 && s[i]!=='' && s[i]!=tag_text) {
