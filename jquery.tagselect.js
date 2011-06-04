@@ -6,7 +6,7 @@
 *
 * Licensed under MIT licenses:
 *     http://www.opensource.org/licenses/mit-license.php
-* Version: v0.2 2010-05-04
+* Version: v0.3 2011-06-04
 *
 */
 
